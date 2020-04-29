@@ -4,6 +4,7 @@ import Book from './Book'
 class Shelf extends Component {
 
 	render() {
+
 		return (
 			<div className="bookshelf">
 				<h2 className="bookshelf-title">Currently Reading</h2>
