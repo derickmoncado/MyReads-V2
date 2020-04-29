@@ -3,6 +3,7 @@ import React, { Component } from 'react'
 class Book extends Component {
 
 	render() {
+		//console.log('Book:', this.props);
 
 		return (
 			<div className="book">

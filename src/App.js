@@ -16,12 +16,10 @@ class BooksApp extends React.Component {
 			this.setState(() => ({
 				allTheBooks: res
 			}))
-			console.log('from App.js:', res);
 		})
 	}
 
 	render() {
-
 		return (
 			<div className="app">
 				{this.state.showSearchPage ? (

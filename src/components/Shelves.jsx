@@ -1,18 +1,22 @@
 import React, { Component } from 'react'
-import Shelf from './Shelf'
+import BookShelf from './BookShelf'
 
 class Shelves extends Component {
 
 	render() {
 		const allTheBooks = this.props.allTheBooks;
-		console.log('from Book.jsx:', allTheBooks);
+		const currentlyReading = allTheBooks.filter((book) => book.shelf === 'currentlyReading');
+		const wantToRead = allTheBooks.filter((book) => book.shelf === 'wantToRead');
+		const read = allTheBooks.filter((book) => book.shelf === 'read');
+
+		//console.log('Shelves:', this.props);
 
 		return (
 			<div className="list-books-content">
 				<div>
-					<Shelf />
-					<Shelf />
-					<Shelf />
+					<BookShelf booksForThisShelf={currentlyReading} />
+					<BookShelf booksForThisShelf={wantToRead} />
+					<BookShelf booksForThisShelf={read} />
 				</div>
 			</div>
 		)
