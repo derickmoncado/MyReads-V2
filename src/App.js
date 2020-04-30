@@ -21,6 +21,15 @@ class BooksApp extends React.Component {
 		})
 	}
 
+	// Move book to new shelf
+	moveBook = (book) => {
+		this.setState((currentState) => ({
+			allTheBooks: currentState.allTheBooks.filter((b) => {
+				return b.shelf !== book.shelf
+			})
+		}))
+	}
+
 	render() {
 		return (
 			<div className="app">
@@ -29,7 +38,10 @@ class BooksApp extends React.Component {
 				) : (
 					<div className="list-books">
 						<Header />
-						<Shelves allTheBooks={this.state.allTheBooks} />
+						<Shelves
+							allTheBooks={this.state.allTheBooks}
+							changeShelf={this.moveBook}
+						/>
 						<SearchButton />
 					</div>
 				)}
