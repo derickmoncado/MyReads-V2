@@ -21,15 +21,18 @@ class BooksApp extends React.Component {
 		})
 	}
 
-	// Move book to new shelf
-	moveBook = (book) => {
-		this.setState((currentState) => ({
-			allTheBooks: currentState.allTheBooks.filter((b) => {
-				return b.shelf !== book.shelf
-			})
-		}))
-	}
+	changeShelf = (shelf, book) => {
+		console.log("app.js", shelf, book);
+		BooksAPI.update(book, shelf).then(res => {
+			console.log(res)
 
+			BooksAPI.getAll().then(res => {
+				this.setState(() => ({
+					allTheBooks: res
+				}))
+			})
+		})
+	}
 
 	render() {
 		return (
@@ -39,7 +42,7 @@ class BooksApp extends React.Component {
 			) : (
 					<div className="list-books">
 						<Header />
-						<Shelves allTheBooks={this.state.allTheBooks} changeShelf={this.moveBook} />
+						<Shelves allTheBooks={this.state.allTheBooks} changeShelf={this.changeShelf} />
 						<SearchButton />
 					</div>
 				)}
