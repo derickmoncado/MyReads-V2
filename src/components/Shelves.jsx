@@ -3,11 +3,11 @@ import BookShelf from './BookShelf'
 
 class Shelves extends Component {
 
-	// Mook book to new shelfs
+	// Mook book to new shelf
 	changeShelf = (e, book) => {
 		this.props.changeShelf(e, book)
-		console.log(e)
-		console.log(book)
+		//console.log(e)
+		//console.log(book)
 	}
 
 	render() {

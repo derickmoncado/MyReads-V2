@@ -5,10 +5,10 @@ import Header from        './components/Header'
 import Search from        './components/Search'
 import SearchButton from  './components/SearchButton'
 import Shelves from       './components/Shelves'
+import { Route } from 		'react-router-dom'
 
 class BooksApp extends React.Component {
 	state = {
-		showSearchPage: false,
 		allTheBooks: []
 	}
 
@@ -21,11 +21,9 @@ class BooksApp extends React.Component {
 		})
 	}
 
+	// Move book to new shelf
 	changeShelf = (shelf, book) => {
-		console.log("app.js", shelf, book);
 		BooksAPI.update(book, shelf).then(res => {
-			console.log(res)
-
 			BooksAPI.getAll().then(res => {
 				this.setState(() => ({
 					allTheBooks: res
@@ -37,15 +35,20 @@ class BooksApp extends React.Component {
 	render() {
 		return (
 			<div className="app">
-				{this.state.showSearchPage ? (
-					<Search />
-			) : (
-					<div className="list-books">
-						<Header />
-						<Shelves allTheBooks={this.state.allTheBooks} changeShelf={this.changeShelf} />
-						<SearchButton />
-					</div>
-				)}
+				<Header />
+
+				<Route path='/' render={() => (
+					<SearchButton />
+				)} />
+
+				<Route exact path='/search' render={() => (
+						<Search />
+				)} />
+
+				<div className="list-books">
+					<Shelves allTheBooks={this.state.allTheBooks} changeShelf={this.changeShelf} />
+				</div>
+
 			</div>
 		)
 	}

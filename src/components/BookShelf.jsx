@@ -2,10 +2,10 @@ import React, { Component } from 'react'
 
 class BookShelf extends Component {
 
-	// Mook book to new shelfs
+	// Mook book to new shelf
 	moveTheBook = (e, book) => {
 		this.props.changeShelf(e.target.value, book)
-		console.log(e.target.value);
+		// console.log(e.target.value);
 	}
 
 	render() {
@@ -29,11 +29,11 @@ class BookShelf extends Component {
 										</div>
 										<div className="book-shelf-changer">
 											<select onChange={(e) => this.moveTheBook(e, book)}>
-												<option selected={book.shelf == "move"} value="move" disabled>Move to...</option>
-												<option selected={book.shelf == "currentlyReading"} value="currentlyReading">Currently Reading</option>
-												<option selected={book.shelf == "wantToRead"} value="wantToRead">Want to Read</option>
-												<option selected={book.shelf == "read"} value="read">Read</option>
-												<option selected={book.shelf == "none"} value="none">None</option>
+												<option selected={book.shelf === "move"} value="move" disabled>Move to...</option>
+												<option selected={book.shelf === "currentlyReading"} value="currentlyReading">Currently Reading</option>
+												<option selected={book.shelf === "wantToRead"} value="wantToRead">Want to Read</option>
+												<option selected={book.shelf === "read"} value="read">Read</option>
+												<option selected={book.shelf === "none"} value="none">None</option>
 											</select>
 										</div>
 									</div>
