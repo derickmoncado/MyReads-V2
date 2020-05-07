@@ -1,11 +1,11 @@
 import React, { Component } from 'react'
+// import Book from './Book'
 
 class BookShelf extends Component {
 
 	// Mook book to new shelf
 	moveTheBook = (e, book) => {
 		this.props.changeShelf(e.target.value, book)
-		// console.log(e.target.value);
 	}
 
 	render() {
