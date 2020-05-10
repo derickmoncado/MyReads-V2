@@ -5,21 +5,23 @@ import * as BooksAPI from '../BooksAPI'
 class Search extends Component {
 
 	state = {
-		booksFromAPI: []
+		query: []
 	}
 
 	// Search call from BooksAPI.js
 	handleSearch = (inputEvent) => {
-		console.log("Input Event:", inputEvent);
-		BooksAPI.search(inputEvent).then(res => {
-			this.setState(() => ({
-				booksFromAPI: res
-			}));
-			console.log("API Response:", res);
-		})
+		if(inputEvent !== "") {
+			BooksAPI.search(inputEvent).then(res => {
+				this.setState(() => ({
+					query: res
+				}));
+				console.log("API Response:", res);
+			})
+		}
 	}
 
 	render() {
+		console.log(this.props);
 
 		return (
 			<div className="search-books">
@@ -36,6 +38,7 @@ class Search extends Component {
 				</div>
 				<div className="search-books-results">
 					<ol className="books-grid">
+						<p>List items with Book component go here.</p>
 					</ol>
 				</div>
 			</div>
