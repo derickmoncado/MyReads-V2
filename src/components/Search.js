@@ -1,11 +1,16 @@
 import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
 import * as BooksAPI from '../BooksAPI'
+import Book from './Book'
 
 class Search extends Component {
-
 	state = {
 		query: []
+	}
+
+	// Mook book to new shelf
+	changeShelf = (e, book) => {
+		this.props.changeShelf(e.target.value, book)
 	}
 
 	// Search call from BooksAPI.js
@@ -15,13 +20,15 @@ class Search extends Component {
 				this.setState(() => ({
 					query: res
 				}));
-				console.log("API Response:", res);
+				console.log("search:", res);
 			})
 		}
 	}
 
 	render() {
 		console.log(this.props);
+		//const shelfBooks = this.props.shelfBooks;
+		//console.log("getAll:", shelfBooks);
 
 		return (
 			<div className="search-books">
@@ -38,7 +45,11 @@ class Search extends Component {
 				</div>
 				<div className="search-books-results">
 					<ol className="books-grid">
-						<p>List items with Book component go here.</p>
+						{this.state.query.map((book) => (
+							<li key={book.id}>
+								<Book book={book} changeShelf={this.changeShelf} />
+							</li>
+						))}
 					</ol>
 				</div>
 			</div>
