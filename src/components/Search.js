@@ -26,7 +26,7 @@ class Search extends Component {
 	}
 
 	render() {
-		console.log(this.props);
+		//console.log(this.props);
 		//const shelfBooks = this.props.shelfBooks;
 		//console.log("getAll:", shelfBooks);
 
@@ -44,13 +44,17 @@ class Search extends Component {
 					</div>
 				</div>
 				<div className="search-books-results">
-					<ol className="books-grid">
-						{this.state.query.map((book) => (
-							<li key={book.id}>
-								<Book book={book} changeShelf={this.changeShelf} />
-							</li>
-						))}
-					</ol>
+					{this.state.query !== [] ? (
+						<ol className="books-grid">
+							{this.state.query.map((book) => (
+								<li key={book.id}>
+									<Book book={book} changeShelf={this.changeShelf} />
+								</li>
+							))}
+						</ol>
+					) : (
+						<ol className="books-grid"></ol>
+					)}
 				</div>
 			</div>
 		)
