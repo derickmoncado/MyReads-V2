@@ -26,9 +26,8 @@ class Search extends Component {
 	}
 
 	render() {
-		//console.log(this.props);
-		//const shelfBooks = this.props.shelfBooks;
-		//console.log("getAll:", shelfBooks);
+		console.log(this.props);
+		console.log("State:", this.state);
 
 		return (
 			<div className="search-books">
