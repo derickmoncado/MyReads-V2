@@ -15,19 +15,23 @@ class Search extends Component {
 
 	// Search call from BooksAPI.js
 	handleSearch = (inputEvent) => {
-		if(inputEvent !== "") {
+		if (inputEvent.length > 0) {
 			BooksAPI.search(inputEvent).then(res => {
 				this.setState(() => ({
 					query: res
 				}));
-				console.log("search:", res);
+				console.log("handleSearch:", res);
 			})
+		} else {
+			this.setState(() => ({
+				query: ""
+			}));
 		}
 	}
 
 	render() {
-		console.log(this.props);
-		console.log("State:", this.state);
+		console.log("this.props:", this.props);
+		console.log("this.state:", this.state);
 
 		return (
 			<div className="search-books">
@@ -43,7 +47,7 @@ class Search extends Component {
 					</div>
 				</div>
 				<div className="search-books-results">
-					{this.state.query !== [] ? (
+					{this.state.query.length > 0 ? (
 						<ol className="books-grid">
 							{this.state.query.map((book) => (
 								<li key={book.id}>
