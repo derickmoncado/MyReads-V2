@@ -1,29 +1,32 @@
-import React, { Component } from 'react'
+import React from 'react'
 import BookShelf from './BookShelf'
 
-class Shelves extends Component {
+// Stateless Functional Component (ES6)
+const Shelves = (props) => {
+	const changeShelf = (e, book) => {
+		props.changeShelf(e, book);
+	};
 
-	// Mook book to new shelf
-	changeShelf = (e, book) => {
-		this.props.changeShelf(e, book)
-	}
+	const allTheBooks = props.allTheBooks;
+	const currentlyReading = allTheBooks.filter((book) => book.shelf === 'currentlyReading');
+	const wantToRead = allTheBooks.filter((book) => book.shelf === 'wantToRead');
+	const read = allTheBooks.filter((book) => book.shelf === 'read');
 
-	render() {
-		const allTheBooks = this.props.allTheBooks;
-		const currentlyReading = allTheBooks.filter((book) => book.shelf === 'currentlyReading');
-		const wantToRead = allTheBooks.filter((book) => book.shelf === 'wantToRead');
-		const read = allTheBooks.filter((book) => book.shelf === 'read');
-
-		return (
-			<div className="list-books-content">
-				<div>
-					<BookShelf booksForThisShelf={currentlyReading} changeShelf={this.changeShelf} title={"Currently Reading"} />
-					<BookShelf booksForThisShelf={wantToRead} changeShelf={this.changeShelf} title={"Want to Read"} />
-					<BookShelf booksForThisShelf={read} changeShelf={this.changeShelf} title="Read" />
-				</div>
+	return (
+		<div className="list-books-content">
+			<div>
+				<BookShelf booksForThisShelf={currentlyReading} changeShelf={changeShelf} title={"Currently Reading"} />
+				<BookShelf booksForThisShelf={wantToRead} changeShelf={changeShelf} title={"Want to Read"} />
+				<BookShelf booksForThisShelf={read} changeShelf={changeShelf} title="Read" />
 			</div>
-		)
-	}
-}
+		</div>
+	);
+};
+
+
+
+
+
+
 
 export default Shelves
