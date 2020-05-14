@@ -10,7 +10,7 @@ class Search extends Component {
 
 	// Mook book to new shelf
 	changeShelf = (e, book) => {
-		this.props.changeShelf(e.target.value, book)
+		this.props.changeShelf(e, book)
 	}
 
 	// Search call from BooksAPI.js
@@ -20,7 +20,6 @@ class Search extends Component {
 				this.setState(() => ({
 					query: res
 				}));
-				console.log("handleSearch:", res);
 			})
 		} else {
 			this.setState(() => ({
