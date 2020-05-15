@@ -1,10 +1,10 @@
-import React from         			'react'
-import * as BooksAPI from 			'./BooksAPI'
-import                    			'./App.css'
-import Header from        			'./components/Header'
-import Search from        			'./components/Search'
-import SearchButton from  			'./components/SearchButton'
-import Shelves from       			'./components/Shelves'
+import React from 'react'
+import * as BooksAPI from './BooksAPI'
+import './App.css'
+import Header from './components/Header'
+import Search from './components/Search'
+import SearchButton from './components/SearchButton'
+import Shelves from './components/Shelves'
 import { Route, Switch } from 	'react-router-dom'
 
 class BooksApp extends React.Component {
