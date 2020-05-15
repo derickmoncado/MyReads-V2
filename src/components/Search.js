@@ -5,7 +5,7 @@ import Book from './Book'
 
 class Search extends Component {
 	state = {
-		query: []
+		results: []
 	}
 
 	// Mook book to new shelf
@@ -16,21 +16,28 @@ class Search extends Component {
 	// Search call from BooksAPI.js
 	handleSearch = (inputEvent) => {
 		if (inputEvent.length > 0) {
-			BooksAPI.search(inputEvent).then(res => {
+			BooksAPI.search(inputEvent).then(books => {
+
+				const booksWithShelves = books.map((b) => {
+					console.log(b)
+				})
+				
+				console.log(booksWithShelves);
+
 				this.setState(() => ({
-					query: res
+					results: books
 				}));
 			})
 		} else {
 			this.setState(() => ({
-				query: []
+				results: []
 			}));
 		}
 	}
 
 	render() {
-		console.log("this.props:", this.props);
-		console.log("this.state:", this.state);
+		// console.log("this.props:", this.props);
+		// console.log("this.state:", this.state);
 
 		return (
 			<div className="search-books">
@@ -46,9 +53,9 @@ class Search extends Component {
 					</div>
 				</div>
 				<div className="search-books-results">
-					{this.state.query.length > 0 ? (
+					{this.state.results.length > 0 ? (
 						<ol className="books-grid">
-							{this.state.query.map((book) => (
+							{this.state.results.map((book) => (
 								<li key={book.id}>
 									<Book book={book} changeShelf={this.changeShelf} />
 								</li>
