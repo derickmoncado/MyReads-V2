@@ -19,6 +19,7 @@ class Search extends Component {
 			BooksAPI.search(inputEvent).then(books => {
 				const booksWithShelves = books.map((book) => {
 					const myBook = this.props.allTheBooks.filter(myBook => myBook.id === book.id);
+					book.shelf = "none"
 					return myBook.length > 0 ? myBook[0] : book;
 				})
 				this.setState(() => ({
